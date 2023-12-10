@@ -1,5 +1,4 @@
-﻿@model IEnumerable<JqueryDataTableProject.Models.TblContact>
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -19,18 +18,6 @@
                 <td>AddedDate</td>
             </tr>
         </thead>
-        @foreach(var d in Model)
-        {
-            <tr class="text-left">
-                <td>@d.Id</td>
-                <td>@d.Name</td>
-                <td>@d.Email</td>
-                <td>@d.Status</td>
-                @* <td>@d.Subject</td>
-                <td>@d.Message</td> *@
-                <td>@(d.AddedDate.HasValue ? d.AddedDate.Value.ToString("dd/MM/yyyy") : "")</td>
-            </tr>
-        }
     </table>
 </div>
 @section Scripts{

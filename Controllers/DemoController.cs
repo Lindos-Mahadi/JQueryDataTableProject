@@ -15,8 +15,13 @@ namespace JqueryDataTableProject.Controllers
 
         public IActionResult Index()
         {
-            var list = appDbContext.TblContacts.ToList();
-            return View(list);
+            return View();
+        }
+
+        public IActionResult GetContactList()
+        {
+            var contactList = appDbContext.TblContacts.ToList();
+            return new JsonResult(contactList);
         }
     }
 }
