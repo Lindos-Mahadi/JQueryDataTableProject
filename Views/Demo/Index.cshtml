@@ -1,0 +1,38 @@
+﻿@model IEnumerable<JqueryDataTableProject.Models.TblContact>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<div class="">
+    <table id="dataTableList" class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Status</td>
+                @* <td>Subject</td> *@
+                @* <td>Message</td> *@
+                <td>AddedDate</td>
+            </tr>
+        </thead>
+        @foreach(var d in Model)
+        {
+            <tr class="text-left">
+                <td>@d.Id</td>
+                <td>@d.Name</td>
+                <td>@d.Email</td>
+                <td>@d.Status</td>
+                @* <td>@d.Subject</td>
+                <td>@d.Message</td> *@
+                <td>@(d.AddedDate.HasValue ? d.AddedDate.Value.ToString("dd/MM/yyyy") : "")</td>
+            </tr>
+        }
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/DataTableJS/customtable.js"></script>
+}
