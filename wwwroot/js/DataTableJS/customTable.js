@@ -17,8 +17,8 @@ function OnSuccess(response) {
     console.log(response);
     $("#dataTableList").DataTable({
         bProcessing: true,
-        bLengthCHange: true,
-        //lengthMenu: [[5, 10, 25, -1][5, 10, 25, "All"]],
+        bLengthChange: true,
+        bLengthMenu: [[5, 10, 25, -1][5, 10, 25, "All"]],
         bFilter: true,
         bSort: true,
         bPaginate: true,
