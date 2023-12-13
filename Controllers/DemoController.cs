@@ -31,14 +31,18 @@ namespace JqueryDataTableProject.Controllers
         {
             try
             {
+                if (tblContact == null)
+                {
+                    return new JsonResult("Data is Invalid!");
+                }
                 var contactData = new TblContact()
                 {
                     Name = tblContact.Name,
                     Email = tblContact.Email,
-                    Status = tblContact.Status,
+                    Status = tblContact.Status ?? false,
                     Subject = tblContact.Subject,
                     Message = tblContact.Message,
-                    AddedDate = tblContact.AddedDate?.ToUniversalTime()
+                    AddedDate = tblContact.AddedDate
                 };
                 appDbContext.TblContacts.Add(contactData);
                 appDbContext.SaveChanges();

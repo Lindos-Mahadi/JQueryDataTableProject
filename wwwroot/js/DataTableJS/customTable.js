@@ -17,12 +17,12 @@ function GetContact() {
 function OnSuccess(response) {
     console.log(response);
     $("#dataTableList").DataTable({
-        bProcessing: true,
-        bLengthChange: true,
+        processing: true,
+        lengthChange: true,
         lengthMenu: [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
-        bFilter: true,
-        bSort: true,
-        bPaginate: true,
+        filter: true,
+        sort: true,
+        paginate: true,
         data: response,
         columns: [
             {
@@ -90,12 +90,33 @@ function submitContact() {debugger
         data: JSON.stringify(objData),
         contentType: 'application/json',
         dataType: 'json',
-        success: function () {
-            alert('Data is Saved');
+        success: function (objData) {
+            alert('Data is saved successfully...');
+
+            // Create modal function for modal hide
+            //$('#myModal').modal('hide');
+            ModalHidePopUp();
+            // Clear text box modal
+            ClearTextBox();
+            GetContact();
         },
         error: function () {
             alert('Data cant Saved');
         }
     });
+
+    
+}
+function ModalHidePopUp() {
+    $('#myModal').modal('hide');
 }
 
+function ClearTextBox() {
+    //Id: $('#Id').val(),
+    $('#Name').val(''),
+        $('#Email').val(''),
+        $('#Subject').val(''),
+        $('#Message').val(''),
+        $('#AddedDate').val(''),
+        $('#Status').prop('')
+}
