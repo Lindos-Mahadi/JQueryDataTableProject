@@ -71,6 +71,7 @@ function OnSuccess(response) {
 
 $("#addNewItem").click(function () {
     $('#myModal').modal('show');
+    $('#Id').css('display', 'none');
 });
 
 // SUBMIT CONTACT BUTTON
@@ -136,4 +137,67 @@ function deleteRow(id) {
             }
         });
     }
+}
+// EDIT OR UPDATE GET FUNCTIONALY
+function editRow(id) {
+    debugger;
+    $.ajax({
+        url: '/Demo/EditContact?id=' + id,
+        type: 'Get',
+        //data: JSON.stringify(objData),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (response) {
+            debugger;
+            console.log("response",response);
+            $('#myModal').modal('show');
+            $('#Id').val(response.id);
+            $('#Name').val(response.name);
+            $('#Email').val(response.email);
+            $('#Subject').val(response.subject);
+            $('#Message').val(response.message);
+            $('#AddedDate').val(response.addedDate);
+            // Set the value for the 'Status' checkbox
+            $('#Status').prop('checked', response.status);
+
+            // BUTTON HIDE OR DISPLAY USING CSS
+            $('#btnSubmit').css('display','none');
+            $('#btnUpdate').css('display', 'block');
+
+            // BUTTON HIDE OR DISPLAY USING CSS
+            //$('#btnSubmit').hide();
+            //$('#btnUpdate').show();
+        },
+        error: function () {
+            alert("Dta not found");
+        }
+    });
+}
+function updateContact() {
+    debugger;
+    var objData = {
+        Id: $('#Id').val(),
+        Name: $('#Name').val(),
+        Email: $('#Email').val(),
+        Subject: $('#Subject').val(),
+        Message: $('#Message').val(),
+        AddedDate: $('#AddedDate').val(),
+        Status: $('#Status').prop('checked')
+    }
+    $.ajax({
+        url: '/Demo/Update',
+        type: 'POST',
+        data: objData,
+        //contentType: 'application/json',
+        //dataType: 'json',
+        success: function () {
+            debugger;
+            alert('Data is Updated successfully...');
+            ModalHidePopUp();
+            ClearTextBox();
+        },
+        error: function () {
+            alert('Data cant Updated');
+        }
+    });
 }

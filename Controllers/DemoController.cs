@@ -69,5 +69,40 @@ namespace JqueryDataTableProject.Controllers
                 throw ex;
             }
         }
+
+        public JsonResult EditContact(long? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new JsonResult("Item not found.?");
+                }
+                var contact = appDbContext.TblContacts.Where(x => x.Id == id).SingleOrDefault();
+                //appDbContext.Update(contact);
+                //appDbContext.SaveChanges();
+                return new JsonResult(contact);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        [HttpPost]
+        public JsonResult Update(TblContact tblContact)
+        {
+            try
+            {
+                appDbContext.TblContacts.Update(tblContact);
+                appDbContext.SaveChanges();
+                return new JsonResult("Data Updated Successfully.!");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
