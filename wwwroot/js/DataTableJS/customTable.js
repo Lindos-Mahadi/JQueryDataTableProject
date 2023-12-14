@@ -73,6 +73,7 @@ $("#addNewItem").click(function () {
     $('#myModal').modal('show');
 });
 
+// SUBMIT CONTACT BUTTON
 function submitContact() {debugger
     var objData = {
         //Id: $('#Id').val(),
@@ -107,10 +108,11 @@ function submitContact() {debugger
 
     
 }
+// MODAL CLOSE AND HIDE
 function ModalHidePopUp() {
     $('#myModal').modal('hide');
 }
-
+// CLEAR TEXT BOX
 function ClearTextBox() {
     //Id: $('#Id').val(),
     $('#Name').val(''),
@@ -119,4 +121,19 @@ function ClearTextBox() {
         $('#Message').val(''),
         $('#AddedDate').val(''),
         $('#Status').prop('')
+}
+// DELETE ITEM FUNCTINALITY
+function deleteRow(id) {
+    debugger;
+    if (confirm('Are you sure, you want to delete thise record.?')) {
+        $.ajax({
+            url: "/Demo/DeleteContact?id=" + id,
+            success: function () {
+            alert("Data deleted successfully from record.!", id);
+            },
+            error: function () {
+                alert("Data cant be deleted.?");
+            }
+        });
+    }
 }

@@ -53,5 +53,21 @@ namespace JqueryDataTableProject.Controllers
                 throw ex;
             }
         }
+
+        public JsonResult DeleteContact(int id)
+        {
+            try
+            {
+                var data = appDbContext.TblContacts.FirstOrDefault(x => x.Id == id);
+                appDbContext.Remove(data);
+                appDbContext.SaveChanges();
+                return new JsonResult("Delete data Item.!");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
