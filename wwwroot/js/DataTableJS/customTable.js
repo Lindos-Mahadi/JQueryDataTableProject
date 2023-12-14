@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿//https://codewithmukesh.com/blog/jquery-datatable-in-aspnet-core/
+$(document).ready(function () {
 
     GetContact();
     //AddNewItem();
@@ -125,12 +126,13 @@ function ClearTextBox() {
 }
 // DELETE ITEM FUNCTINALITY
 function deleteRow(id) {
-    debugger;
+    //debugger;
     if (confirm('Are you sure, you want to delete thise record.?')) {
         $.ajax({
             url: "/Demo/DeleteContact?id=" + id,
             success: function () {
             alert("Data deleted successfully from record.!", id);
+            //GetContact(); // Call GetContact after editing
             },
             error: function () {
                 alert("Data cant be deleted.?");
@@ -148,7 +150,7 @@ function editRow(id) {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            debugger;
+            //debugger;
             console.log("response",response);
             $('#myModal').modal('show');
             $('#Id').val(response.id);
@@ -191,7 +193,7 @@ function updateContact() {
         //contentType: 'application/json',
         //dataType: 'json',
         success: function () {
-            debugger;
+            //debugger;
             alert('Data is Updated successfully...');
             ModalHidePopUp();
             ClearTextBox();
